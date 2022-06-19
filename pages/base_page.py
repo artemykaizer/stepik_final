@@ -2,6 +2,7 @@ from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoAlertPresentException
 from .locators import BasePageLocators
+from .locators import BasketPageLocators
 import math
 
 from selenium.webdriver.support.wait import WebDriverWait
@@ -61,3 +62,7 @@ class BasePage():
     def should_be_login_page(self):
         current_url = self.browser.current_url
         assert "login" in current_url, "URL is not correct"
+
+    def go_to_basket_from_header(self):
+        basket = self.browser.find_element(*BasePageLocators.BASKET_FROM_HEADER)
+        basket.click()
